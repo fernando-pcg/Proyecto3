@@ -1,0 +1,63 @@
+﻿@model IEnumerable<TestCrud3.Models.Visitas>
+
+@{
+    ViewBag.Title = "Visitas";
+}
+
+<h2>Vistas</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hora_Entrada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hora_Salida)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Motivo_Visita)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Area.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Persona.Nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hora_Entrada)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hora_Salida)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Motivo_Visita)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Area.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Persona.Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.IdVisitas }) |
+            @Html.ActionLink("Detalle", "Details", new { id=item.IdVisitas }) |
+            @Html.ActionLink("Borrar", "Delete", new { id=item.IdVisitas })
+        </td>
+    </tr>
+}
+
+</table>

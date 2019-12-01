@@ -1,0 +1,66 @@
+﻿@model TestCrud3.Models.Visitas
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Visitas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hora_Entrada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hora_Entrada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hora_Salida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hora_Salida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Motivo_Visita)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Motivo_Visita)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Area.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Area.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Persona.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Persona.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdVisitas }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

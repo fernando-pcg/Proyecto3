@@ -1,0 +1,42 @@
+﻿@model TestCrud3.Models.Area
+
+@{
+    ViewBag.Title = "Detalle";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Area</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CantidadVisitas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CantidadVisitas)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IdArea }) |
+    @Html.ActionLink("Volver", "Index")
+</p>

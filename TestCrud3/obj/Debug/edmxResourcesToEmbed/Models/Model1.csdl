@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TercerTestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Area">
+    <Key>
+      <PropertyRef Name="IdArea" />
+    </Key>
+    <Property Name="IdArea" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Estado" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CantidadVisitas" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Visitas" Relationship="Self.fk_Visita_Area" FromRole="Area" ToRole="Visitas" />
+  </EntityType>
+  <EntityType Name="Persona">
+    <Key>
+      <PropertyRef Name="IdPersona" />
+    </Key>
+    <Property Name="IdPersona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Apellido" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Direccion" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Telefono" Type="Int64" Nullable="false" />
+    <Property Name="Correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Visitas" Relationship="Self.fk_Persona_Visita" FromRole="Persona" ToRole="Visitas" />
+  </EntityType>
+  <EntityType Name="Visitas">
+    <Key>
+      <PropertyRef Name="IdVisitas" />
+    </Key>
+    <Property Name="IdVisitas" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Hora_Entrada" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="Hora_Salida" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="IdPersona" Type="Int32" Nullable="false" />
+    <Property Name="Motivo_Visita" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IdArea" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Area" Relationship="Self.fk_Visita_Area" FromRole="Visitas" ToRole="Area" />
+    <NavigationProperty Name="Persona" Relationship="Self.fk_Persona_Visita" FromRole="Visitas" ToRole="Persona" />
+  </EntityType>
+  <Association Name="fk_Visita_Area">
+    <End Role="Area" Type="Self.Area" Multiplicity="1" />
+    <End Role="Visitas" Type="Self.Visitas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Area">
+        <PropertyRef Name="IdArea" />
+      </Principal>
+      <Dependent Role="Visitas">
+        <PropertyRef Name="IdArea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Persona_Visita">
+    <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+    <End Role="Visitas" Type="Self.Visitas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="IdPersona" />
+      </Principal>
+      <Dependent Role="Visitas">
+        <PropertyRef Name="IdPersona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TercerTestEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Area" EntityType="Self.Area" />
+    <EntitySet Name="Persona" EntityType="Self.Persona" />
+    <EntitySet Name="Visitas" EntityType="Self.Visitas" />
+    <AssociationSet Name="fk_Visita_Area" Association="Self.fk_Visita_Area">
+      <End Role="Area" EntitySet="Area" />
+      <End Role="Visitas" EntitySet="Visitas" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Persona_Visita" Association="Self.fk_Persona_Visita">
+      <End Role="Persona" EntitySet="Persona" />
+      <End Role="Visitas" EntitySet="Visitas" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
